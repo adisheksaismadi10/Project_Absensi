@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Absen Kelas</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f5f6f8;--card:#fff;--ink:#1c2740;--mut:#64708a;--line:#dde1ea;--pri:#24408e;--h:#1e8a5a;--i:#b97d00;--a:#c0392b;--hb:#e3f4ec;--ib:#fbf0d6;--ab:#fbe4e1;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121826;--card:#1b2436;--ink:#e8ecf5;--mut:#96a1b8;--line:#2c3850;--pri:#7f9bf0;--h:#4cc38a;--i:#e2a93a;--a:#ef7a6c;--hb:#173a2c;--ib:#3a2f12;--ab:#3d1f1c}}
+:root[data-theme="dark"]{--bg:#121826;--card:#1b2436;--ink:#e8ecf5;--mut:#96a1b8;--line:#2c3850;--pri:#7f9bf0;--h:#4cc38a;--i:#e2a93a;--a:#ef7a6c;--hb:#173a2c;--ib:#3a2f12;--ab:#3d1f1c}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 Nunito,system-ui,sans-serif}
+main{max-width:760px;margin:0 auto;padding:16px}
+h1,h2{margin:0;font-weight:800}
+h1{font-size:1.5rem}h2{font-size:1.15rem;margin-bottom:8px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:14px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:12px}
+.mut{color:var(--mut);font-size:.9rem}
+input,select{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:9px 11px;min-width:0}
+input:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(--pri);outline-offset:1px}
+button{font:inherit;font-weight:600;cursor:pointer;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;padding:9px 13px}
+button.p{background:var(--pri);color:#fff;border-color:var(--pri)}
+:root[data-theme="dark"] button.p{color:#111}
+button.sm{padding:6px 10px;font-size:.9rem}
+button.dg{color:var(--a);border-color:var(--a)}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.tabs{display:flex;gap:4px;border-bottom:2px solid var(--line);margin-bottom:14px}
+.tabs button{border:0;border-radius:8px 8px 0 0;background:none;color:var(--mut);padding:10px 14px}
+.tabs button.on{color:var(--pri);box-shadow:inset 0 -3px 0 var(--pri)}
+.seg button{border-radius:0}.seg button:first-child{border-radius:8px 0 0 8px}.seg button:last-child{border-radius:0 8px 8px 0}
+.seg button.on{background:var(--pri);color:#fff;border-color:var(--pri)}
+:root[data-theme="dark"] .seg button.on{color:#111}
+.stu{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 0;border-top:1px solid var(--line);flex-wrap:wrap}
+.stu:first-child{border-top:0}
+.nm{font-weight:600;flex:1 1 140px}
+.st button{min-width:48px}
+.st .H.on{background:var(--h);border-color:var(--h);color:#fff}
+.st .I.on{background:var(--i);border-color:var(--i);color:#fff}
+.st .A.on{background:var(--a);border-color:var(--a);color:#fff}
+.sum{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:12px 0}
+.sum div{border-radius:10px;padding:12px;text-align:center}
+.sum b{display:block;font-size:1.9rem;line-height:1.1}
+.sH{background:var(--hb);color:var(--h)}.sI{background:var(--ib);color:var(--i)}.sA{background:var(--ab);color:var(--a)}
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:420px}
+th,td{padding:8px;border-bottom:1px solid var(--line);text-align:center}
+th:nth-child(2),td:nth-child(2){text-align:left}
+.err{color:var(--a);font-weight:600;margin:8px 0}
+.note{background:var(--ib);color:var(--ink);border-radius:8px;padding:10px 12px;margin:10px 0}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:9px 16px;border-radius:20px;font-weight:600}
+textarea{width:100%;min-height:70px;font:12px monospace;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:8px}
+label{font-weight:600;display:block;margin:8px 0 3px}
+.mx{min-width:0}.mx th,.mx td{text-align:center;padding:6px 4px;min-width:28px;font-size:.85rem}
+.mx .sk{text-align:left;position:sticky;left:0;background:var(--card);min-width:120px;white-space:nowrap;padding-left:8px}
+.cH{background:var(--hb);color:var(--h)}.cI{background:var(--ib);color:var(--i)}.cA{background:var(--ab);color:var(--a)}
+.mx td.cH,.mx td.cI,.mx td.cA{font-weight:800}
+.pill{padding:2px 10px;border-radius:12px;font-weight:600;font-size:.85rem}
+.bar{height:12px;background:var(--line);border-radius:6px;overflow:hidden}.bar i{display:block;height:100%;background:var(--h)}
+.wk{padding:10px;border:1px solid var(--line);border-radius:10px;margin-bottom:8px}.wk.cur{border-color:var(--pri);border-width:2px}
+</style>
+</head>
+<body>
+<main id="app"></main>
+<script>
+const K='absen_v1';
+let db=load();
+function load(){try{const d=JSON.parse(localStorage.getItem(K));if(d&&d.classes)return d}catch(e){}return{classes:{}}}
+function save(){try{localStorage.setItem(K,JSON.stringify(db))}catch(e){toast('Penyimpanan browser tidak tersedia')}}
+const S={cls:null,tab:'in',date:ymd(new Date()),sesi:'Pagi',rep:'week',edit:null,del:null,err:'',toast:'',backup:''};
+function ymd(d){const p=n=>String(n).padStart(2,'0');return d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate())}
+function pd(s){const[a,b,c]=s.split('-').map(Number);return new Date(a,b-1,c)}
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const C=()=>db.classes[S.cls];
+const weekend=d=>{const w=pd(d).getDay();return w===0||w===6};
+const isHol=(c,d)=>weekend(d)||!!c.holidays[d];
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,5);
+const HARI=['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+const fmt=d=>{const x=pd(d);return HARI[x.getDay()]+', '+x.toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'})};
+function toast(m){S.toast=m;render();setTimeout(()=>{S.toast='';render()},1800)}
+
+function range(){
+  const d=pd(S.date);let a,b;
+  if(S.rep==='week'){const w=(d.getDay()+6)%7;a=new Date(d.getFullYear(),d.getMonth(),d.getDate()-w);b=new Date(a.getFullYear(),a.getMonth(),a.getDate()+6)}
+  else{a=new Date(d.getFullYear(),d.getMonth(),1);b=new Date(d.getFullYear(),d.getMonth()+1,0)}
+  const out=[];for(let x=new Date(a);x<=b;x.setDate(x.getDate()+1))out.push(ymd(x));return out;
+}
+function report(){
+  const c=C(),days=range().filter(d=>!isHol(c,d));
+  const rows=c.students.map(s=>{const r={n:s.name,H:0,I:0,A:0};
+    days.forEach(d=>['Pagi','Malam'].forEach(se=>{const v=c.att[d+'|'+se+'|'+s.id];if(v)r[v]++}));
+    const t=r.H+r.I+r.A;r.p=t?Math.round(r.H/t*100):0;r.t=t;return r});
+  const T=rows.reduce((a,r)=>({H:a.H+r.H,I:a.I+r.I,A:a.A+r.A}),{H:0,I:0,A:0});
+  const all=T.H+T.I+T.A;
+  return{rows,T,pct:all?Math.round(T.H/all*100):0,days};
+}
+
+function render(){
+  const el=document.getElementById('app');
+  el.innerHTML=(S.cls?appView():loginView())+(S.toast?`<div class="toast" role="status">${esc(S.toast)}</div>`:'');
+  const f=document.activeElement;
+}
+
+function loginView(){
+  const names=Object.keys(db.classes);
+  return `<div class="top"><h1>Absen Kelas</h1></div>
+  <div class="card"><h2>Masuk ke kelas</h2>
+  ${names.length?`<label for="lc">Kelas</label><select id="lc" data-f="lc" style="width:100%">${names.map(n=>`<option>${esc(n)}</option>`).join('')}</select>
+  <label for="lp">PIN</label><input id="lp" type="password" inputmode="numeric" style="width:100%" autocomplete="off">
+  <div class="row" style="margin-top:12px"><button class="p" data-act="login">Masuk</button></div>`:'<p class="mut">Belum ada kelas. Buat kelas pertama di bawah.</p>'}
+  ${S.err?`<div class="err">${esc(S.err)}</div>`:''}</div>
+  <div class="card"><h2>Buat kelas baru</h2>
+  <label for="nc">Nama kelas</label><input id="nc" placeholder="mis. Kelas 1A" style="width:100%">
+  <label for="np">PIN guru (4 angka atau lebih)</label><input id="np" type="password" inputmode="numeric" style="width:100%" autocomplete="off">
+  <div class="row" style="margin-top:12px"><button data-act="mk">Buat kelas</button></div></div>
+  <p class="mut">Data tersimpan di browser perangkat ini. PIN membatasi tampilan per kelas, tetapi bukan pengaman data tingkat server.</p>`;
+}
+
+function appView(){
+  const c=C();
+  const tabs=[['in','Input absen'],['stu','Daftar siswa'],['rep','Laporan']];
+  return `<div class="top"><div><h1>${esc(S.cls)}</h1><div class="mut">${c.students.length} siswa</div></div>
+  <button class="sm" data-act="out">Keluar</button></div>
+  <div class="tabs" role="tablist">${tabs.map(t=>`<button role="tab" class="${S.tab===t[0]?'on':''}" data-act="tab" data-v="${t[0]}">${t[1]}</button>`).join('')}</div>`
+  +(S.tab==='in'?inView(c):S.tab==='stu'?stuView(c):repView(c));
+}
+
+function inView(c){
+  const hol=isHol(c,S.date),wk=weekend(S.date);
+  let h=`<div class="card"><div class="row">
+  <input type="date" data-f="date" value="${S.date}" aria-label="Tanggal">
+  <div class="seg row" style="gap:0">${['Pagi','Malam'].map(s=>`<button class="${S.sesi===s?'on':''}" data-act="sesi" data-v="${s}">${s}</button>`).join('')}</div></div>
+  <div class="mut" style="margin-top:8px">${fmt(S.date)}</div>`;
+  if(!wk)h+=`<label class="row" style="margin-top:8px;font-weight:600"><input type="checkbox" data-f="hol" ${c.holidays[S.date]?'checked':''}> Tandai hari libur</label>`;
+  h+='</div>';
+  if(hol)return h+`<div class="note">${wk?'Akhir pekan':'Hari libur'}: absen tidak dicatat dan tidak dihitung di laporan.</div>`;
+  if(!c.students.length)return h+`<div class="note">Belum ada siswa. Buka tab Daftar siswa untuk menambahkan.</div>`;
+  const cnt={H:0,I:0,A:0};let done=0;
+  c.students.forEach(s=>{const v=c.att[S.date+'|'+S.sesi+'|'+s.id];if(v){cnt[v]++;done++}});
+  h+=`<div class="card"><div class="top"><h2>Sesi ${S.sesi}</h2><button class="sm" data-act="allH">Semua hadir</button></div>
+  <div class="mut">Terisi ${done} dari ${c.students.length} siswa. Tersimpan otomatis.</div>`;
+  h+=c.students.map((s,i)=>{const v=c.att[S.date+'|'+S.sesi+'|'+s.id];
+    return `<div class="stu"><span class="nm">${i+1}. ${esc(s.name)}</span><span class="st row">
+    ${[['H','Hadir'],['I','Izin'],['A','Alpa']].map(b=>`<button class="${b[0]} ${v===b[0]?'on':''}" data-act="set" data-id="${s.id}" data-v="${b[0]}" aria-pressed="${v===b[0]}">${b[1]}</button>`).join('')}</span></div>`}).join('');
+  return h+'</div>';
+}
+
+function stuView(c){
+  let h=`<div class="card"><h2>Tambah siswa</h2><div class="row"><input id="ns" placeholder="Nama siswa" style="flex:1 1 200px" data-f="ns"><button class="p" data-act="add">Tambah</button></div>
+  ${S.err?`<div class="err">${esc(S.err)}</div>`:''}</div><div class="card"><h2>Daftar siswa</h2>`;
+  if(!c.students.length)h+='<p class="mut">Belum ada siswa.</p>';
+  h+=c.students.map((s,i)=>{
+    if(S.edit===s.id)return `<div class="stu"><input id="en" value="${esc(s.name)}" style="flex:1 1 180px"><span class="row"><button class="sm p" data-act="saveEdit" data-id="${s.id}">Simpan</button><button class="sm" data-act="cancel">Batal</button></span></div>`;
+    const del=S.del===s.id;
+    return `<div class="stu"><span class="nm">${i+1}. ${esc(s.name)}</span><span class="row">
+    ${del?`<button class="sm dg" data-act="confirmDel" data-id="${s.id}">Yakin hapus?</button><button class="sm" data-act="cancel">Batal</button>`
+    :`<button class="sm" data-act="edit" data-id="${s.id}">Edit</button><button class="sm dg" data-act="del" data-id="${s.id}">Hapus</button>`}</span></div>`}).join('');
+  h+=`</div><div class="card"><h2>Cadangan data</h2><p class="mut">Salin cadangan lalu simpan di catatan/WhatsApp. Untuk memulihkan, tempel teks cadangan di kotak lalu tekan Pulihkan.</p>
+  <div class="row"><button class="sm" data-act="bk">Salin cadangan kelas ini</button><button class="sm" data-act="rs">Pulihkan</button></div>
+  <textarea id="bkt" style="margin-top:8px" placeholder="Tempel cadangan di sini">${esc(S.backup)}</textarea></div>`;
+  return h;
+}
+
+const ST={H:'Hadir',I:'Izin',A:'Alpa'};
+const sd=d=>{const x=pd(d);return HARI[x.getDay()].slice(0,3)+' '+x.getDate()+'/'+(x.getMonth()+1)};
+const dm=d=>{const x=pd(d);return x.getDate()+'/'+(x.getMonth()+1)+'/'+x.getFullYear()};
+function weeks(){
+  const c=C(),d=pd(S.date),y=d.getFullYear(),m=d.getMonth(),last=new Date(y,m+1,0).getDate(),out=[];let cur=null;
+  for(let i=1;i<=last;i++){
+    const key=ymd(new Date(y,m,i)),w=(new Date(y,m,i).getDay()+6)%7;
+    if(!cur||w===0){cur={days:[],H:0,I:0,A:0,school:0};out.push(cur)}
+    cur.days.push(key);
+    if(!isHol(c,key)){cur.school++;c.students.forEach(s=>['Pagi','Malam'].forEach(se=>{const v=c.att[key+'|'+se+'|'+s.id];if(v)cur[v]++}))}
+  }
+  return out.filter(w=>w.school>0).map(w=>{const t=w.H+w.I+w.A;return Object.assign(w,{t,p:t?Math.round(w.H/t*100):0,cur:w.days.includes(S.date)})});
+}
+function detail(){
+  const c=C(),days=report().days,list=[];
+  days.forEach(d=>['Pagi','Malam'].forEach(se=>c.students.forEach(s=>{const v=c.att[d+'|'+se+'|'+s.id];if(v&&v!=='H')list.push({d,se,n:s.name,v})})));
+  return{days,list};
+}
+function repView(c){
+  const r=report(),dt=detail(),wk=weeks(),rg=range();
+  const per=S.rep==='week'?'mingguan':'bulanan';
+  const bln=pd(S.date).toLocaleDateString('id-ID',{month:'long',year:'numeric'});
+  let h=`<div class="card"><div class="row"><div class="seg row" style="gap:0">
+  <button class="${S.rep==='week'?'on':''}" data-act="rep" data-v="week">Mingguan</button><button class="${S.rep==='month'?'on':''}" data-act="rep" data-v="month">Bulanan</button></div>
+  <input type="date" data-f="date" value="${S.date}" aria-label="Tanggal acuan"></div>
+  <div class="mut" style="margin-top:8px">Periode ${per}: ${fmt(rg[0])} sampai ${fmt(rg[rg.length-1])}. Akhir pekan dan hari libur tidak dihitung.</div>
+  <div class="sum"><div class="sH"><b>${r.T.H}</b>Hadir</div><div class="sI"><b>${r.T.I}</b>Izin</div><div class="sA"><b>${r.T.A}</b>Alpa</div></div>
+  <div class="mut">Persentase kehadiran kelas: <b>${r.pct}%</b></div>${r.days.length?'':'<div class="note">Tidak ada hari sekolah pada periode ini.</div>'}</div>`;
+  h+=`<div class="card"><h2>Progres per minggu, ${esc(bln)}</h2>`;
+  if(!wk.length)h+='<p class="mut">Belum ada hari sekolah bulan ini.</p>';
+  h+=wk.map((w,i)=>{
+    const pv=wk[i-1];const df=pv&&pv.t&&w.t?w.p-pv.p:null;
+    const dtxt=df===null?'':(df>0?`, naik ${df} poin`:df<0?`, turun ${-df} poin`:', sama dengan minggu lalu');
+    return `<div class="wk${w.cur?' cur':''}"><div class="top" style="margin-bottom:6px"><b>Minggu ke-${i+1}${w.cur?' (dipilih)':''}</b><span class="mut">${sd(w.days[0])} sampai ${sd(w.days[w.days.length-1])}</span></div>
+    <div class="bar"><i style="width:${w.p}%"></i></div>
+    <div class="mut" style="margin-top:4px">Hadir ${w.H}, Izin ${w.I}, Alpa ${w.A}. ${w.t?'Kehadiran '+w.p+'%'+dtxt:'Belum ada data'}</div></div>`}).join('');
+  h+='</div>';
+  h+=`<div class="card"><div class="top"><h2>Rekap per siswa</h2><button class="sm" data-act="copy">Salin untuk Excel</button></div>
+  <div class="scroll"><table><thead><tr><th>No</th><th>Nama</th><th>Hadir</th><th>Izin</th><th>Alpa</th><th>% Hadir</th></tr></thead><tbody>
+  ${r.rows.map((x,i)=>`<tr><td>${i+1}</td><td>${esc(x.n)}</td><td>${x.H}</td><td>${x.I}</td><td>${x.A}</td><td>${x.p}%</td></tr>`).join('')||'<tr><td colspan="6" class="mut">Belum ada siswa</td></tr>'}
+  </tbody></table></div></div>`;
+  h+=`<div class="card"><div class="top"><h2>Detail per tanggal dan sesi</h2><button class="sm" data-act="copyM">Salin untuk Excel</button></div>
+  <div class="mut" style="margin-bottom:8px">P = Pagi, M = Malam. H = Hadir, I = Izin, A = Alpa, tanda - berarti belum diisi.</div>
+  <div class="scroll"><table class="mx"><thead><tr><th rowspan="2" class="sk">Nama</th>${dt.days.map(d=>`<th colspan="2">${sd(d)}</th>`).join('')}<th rowspan="2">H</th><th rowspan="2">I</th><th rowspan="2">A</th></tr>
+  <tr>${dt.days.map(()=>'<th>P</th><th>M</th>').join('')}</tr></thead><tbody>
+  ${c.students.map((s,i)=>`<tr><td class="sk">${i+1}. ${esc(s.name)}</td>${dt.days.map(d=>['Pagi','Malam'].map(se=>{const v=c.att[d+'|'+se+'|'+s.id];return `<td class="${v?'c'+v:''}">${v||'-'}</td>`}).join('')).join('')}<td>${r.rows[i].H}</td><td>${r.rows[i].I}</td><td>${r.rows[i].A}</td></tr>`).join('')||'<tr><td class="sk mut">Belum ada siswa</td></tr>'}
+  </tbody></table></div></div>`;
+  h+=`<div class="card"><div class="top"><h2>Daftar izin dan alpa</h2><button class="sm" data-act="copyL">Salin untuk Excel</button></div>`;
+  h+=dt.list.length?`<div class="scroll"><table><thead><tr><th>Tanggal</th><th>Sesi</th><th>Nama</th><th>Status</th></tr></thead><tbody>
+  ${dt.list.map(x=>`<tr><td style="text-align:left;white-space:nowrap">${sd(x.d)}/${pd(x.d).getFullYear()}</td><td>${x.se}</td><td style="text-align:left">${esc(x.n)}</td><td><span class="pill c${x.v}">${ST[x.v]}</span></td></tr>`).join('')}
+  </tbody></table></div>`:'<p class="mut">Tidak ada izin atau alpa pada periode ini.</p>';
+  return h+'</div>';
+}
+
+function copyText(t){
+  const ok=()=>toast('Tersalin');
+  const fb=()=>{const x=document.createElement('textarea');x.value=t;document.body.appendChild(x);x.select();try{document.execCommand('copy');ok()}catch(e){toast('Gagal menyalin')}x.remove()};
+  try{navigator.clipboard.writeText(t).then(ok,fb)}catch(e){fb()}
+}
+
+document.addEventListener('click',e=>{
+  const b=e.target.closest('[data-act]');if(!b)return;
+  const a=b.dataset.act,v=b.dataset.v,id=b.dataset.id,$=i=>document.getElementById(i);
+  const c=S.cls?C():null;S.err='';
+  if(a==='login'){const n=$('lc').value,p=$('lp').value;if(db.classes[n].pin===p){S.cls=n;S.tab='in'}else S.err='PIN salah. Coba lagi.'}
+  else if(a==='mk'){const n=$('nc').value.trim(),p=$('np').value.trim();
+    if(!n)S.err='Isi nama kelas.';else if(p.length<4)S.err='PIN minimal 4 karakter.';else if(db.classes[n])S.err='Nama kelas sudah ada.';
+    else{db.classes[n]={pin:p,students:[],att:{},holidays:{}};save();S.cls=n;S.tab='stu'}}
+  else if(a==='out'){S.cls=null}
+  else if(a==='tab'){S.tab=v;S.edit=S.del=null}
+  else if(a==='sesi'){S.sesi=v}
+  else if(a==='rep'){S.rep=v}
+  else if(a==='set'){const k=S.date+'|'+S.sesi+'|'+id;if(c.att[k]===v)delete c.att[k];else c.att[k]=v;save()}
+  else if(a==='allH'){c.students.forEach(s=>c.att[S.date+'|'+S.sesi+'|'+s.id]='H');save()}
+  else if(a==='add'){const n=$('ns').value.trim();if(!n)S.err='Isi nama siswa.';else{c.students.push({id:uid(),name:n});save()}}
+  else if(a==='edit'){S.edit=id;S.del=null}
+  else if(a==='saveEdit'){const n=$('en').value.trim();if(n){c.students.find(s=>s.id===id).name=n;save()}S.edit=null}
+  else if(a==='cancel'){S.edit=S.del=null}
+  else if(a==='del'){S.del=id;S.edit=null}
+  else if(a==='confirmDel'){c.students=c.students.filter(s=>s.id!==id);Object.keys(c.att).forEach(k=>{if(k.endsWith('|'+id))delete c.att[k]});S.del=null;save()}
+  else if(a==='copy'){const r=report();copyText(['No\tNama\tHadir\tIzin\tAlpa\t% Hadir'].concat(r.rows.map((x,i)=>[i+1,x.n,x.H,x.I,x.A,x.p+'%'].join('\t'))).join('\n'));return}
+  else if(a==='copyM'){const d=detail().days,r=report();const hd=['No','Nama'];d.forEach(x=>hd.push(dm(x)+' Pagi',dm(x)+' Malam'));hd.push('Hadir','Izin','Alpa');
+    const rows=c.students.map((st,i)=>{const row=[i+1,st.name];d.forEach(x=>['Pagi','Malam'].forEach(se=>row.push(ST[c.att[x+'|'+se+'|'+st.id]]||'')));row.push(r.rows[i].H,r.rows[i].I,r.rows[i].A);return row.join('\t')});
+    copyText([hd.join('\t')].concat(rows).join('\n'));return}
+  else if(a==='copyL'){const l=detail().list;copyText(['Tanggal\tHari\tSesi\tNama\tStatus'].concat(l.map(x=>[dm(x.d),HARI[pd(x.d).getDay()],x.se,x.n,ST[x.v]].join('\t'))).join('\n'));return}
+  else if(a==='bk'){const t=JSON.stringify({name:S.cls,data:c});S.backup=t;copyText(t);return}
+  else if(a==='rs'){try{const o=JSON.parse($('bkt').value);if(!o.data||!o.data.students)throw 0;const pin=c.pin;db.classes[S.cls]=Object.assign({holidays:{},att:{}},o.data,{pin});save();S.backup='';toast('Data dipulihkan');return}catch(x){S.err='Teks cadangan tidak valid.'}}
+  render();
+});
+document.addEventListener('change',e=>{
+  const f=e.target.dataset.f;if(!f)return;
+  if(f==='date'&&e.target.value){S.date=e.target.value;render()}
+  else if(f==='hol'){const c=C();if(e.target.checked)c.holidays[S.date]=1;else delete c.holidays[S.date];save();render()}
+});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Enter'&&e.target.id==='ns'){document.querySelector('[data-act=add]').click()}
+  if(e.key==='Enter'&&e.target.id==='lp'){document.querySelector('[data-act=login]').click()}
+});
+render();
+</script>
+</body>
+</html>
